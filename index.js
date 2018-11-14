@@ -1,8 +1,29 @@
 const express = require('express'),
           app = express(),
-     template = require('./views/template')
+     template = require('./src/template'),
          path = require('path');
 
+let webpack;
+if (process.env.NODE_ENV === 'development' ) {
+	webpack = require('webpack');
+	console.log('building for dev...');
+	const webpackConfig = require('./webpack.config.dev');
+	const compiler = webpack(webpackConfig);
+	app.use(require('webpack-dev-middleware')(compiler, {
+		noInfo: true,
+		publicPath: webpackConfig.output.publicPath,
+		stats: {
+			assets: false,
+			colors: true,
+			version: false,
+			hash: false,
+			timings: false,
+			chunks: false,
+			chunkModules: false
+		}
+	}));
+	app.use(require('webpack-hot-middleware')(compiler));
+}
 
 // Serving static files
 app.use('/assets', express.static(path.resolve(__dirname, 'assets')));
@@ -22,7 +43,7 @@ let initialState = {
 }
 
 //SSR function import
-const ssr = require('./views/server');
+const ssr = require('./src/server');
 
 // server rendered home page
 app.get('/', (req, res) => {

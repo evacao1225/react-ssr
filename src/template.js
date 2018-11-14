@@ -5,11 +5,11 @@ function template(title, initialState = {}, content = ""){
     scripts = ` <script>
                    window.__STATE__ = ${JSON.stringify(initialState)}
                 </script>
-                <script src="assets/client.js"></script>
+                <script src="assets/bundle.js"></script>
                 `
-  } else {
+  } /*else {
     scripts = ` <script src="assets/bundle.js"> </script> `
-  }
+  }*/
   let page = `<!DOCTYPE html>
               <html lang="en">
               <head>

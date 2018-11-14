@@ -8,8 +8,8 @@
     "npm": "5.7.1"
   },
   "scripts": {
-    "start": "node index.js",
-    "pack": "webpack --config webpack.config.js",
+    "start": "NODE_ENV=development babel-node index.js",
+    "pack": "webpack --config webpack.config.prod.js",
     "babel": "babel src -d views",
     "build": "npm run pack && npm run babel"
   },
@@ -26,10 +26,15 @@
   "devDependencies": {
     "@babel/cli": "^7.1.2",
     "@babel/core": "^7.1.2",
+    "@babel/node": "^7.0.0",
     "@babel/preset-env": "^7.1.0",
     "@babel/preset-react": "^7.0.0",
     "babel-loader": "^8.0.4",
+    "babel-plugin-react-transform": "^3.0.0",
+    "react-transform-hmr": "^1.0.4",
     "webpack": "^4.20.2",
-    "webpack-cli": "^3.1.2"
+    "webpack-cli": "^3.1.2",
+    "webpack-dev-middleware": "^3.4.0",
+    "webpack-hot-middleware": "^2.24.3"
   }
 }
