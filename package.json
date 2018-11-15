@@ -1,6 +1,6 @@
 {
   "name": "app-cards",
-  "version": "1.1.0",
+  "version": "1.0.0",
   "description": "Server-side Rendering React from Scratch!",
   "main": "index.js",
   "engines": {
@@ -8,20 +8,29 @@
     "npm": "5.7.1"
   },
   "scripts": {
-    "start": "NODE_ENV=development babel-node index.js",
-    "pack": "webpack --config webpack.config.prod.js",
-    "babel": "babel src -d views",
-    "build": "npm run pack && npm run babel"
+    "start": "npm run build && node ./views/server/index.js",
+		"pack": "webpack --config webpack.config.js",
+		"babel": "babel src -d views",
+		"build": "npm run pack && npm run babel"
   },
-  "author": "Rohit kumar",
-  "license": "CC BY 4.0",
+  "author": "Ping Cao",
+  "license": "MIT",
+  "babel": {
+    "presets": [
+      "@babel/env",
+      "@babel/react"
+    ]
+  },
   "dependencies": {
     "express": "^4.16.3",
+    "cors": "2.8.5",
     "react": "^16.5.2",
     "react-dom": "^16.5.2",
     "react-redux": "^5.0.7",
+    "react-router-dom": "^4.3.1",
     "redux": "^3.7.2",
-    "redux-thunk": "^2.3.0"
+    "redux-thunk": "^2.3.0",
+    "serialize-javascript": "1.5.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.1.2",
@@ -31,10 +40,10 @@
     "@babel/preset-react": "^7.0.0",
     "babel-loader": "^8.0.4",
     "babel-plugin-react-transform": "^3.0.0",
-    "react-transform-hmr": "^1.0.4",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "nodemon": "1.18.6",
     "webpack": "^4.20.2",
     "webpack-cli": "^3.1.2",
-    "webpack-dev-middleware": "^3.4.0",
-    "webpack-hot-middleware": "^2.24.3"
+    "webpack-node-externals": "1.7.2"
   }
 }
