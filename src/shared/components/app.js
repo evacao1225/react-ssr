@@ -1,39 +1,35 @@
 import React, {Component} from 'react'
-import { connect } from 'react-redux'
-import { fetchAppsIfNeeded } from '../redux/actions'
+import { Switch, Route } from 'react-router-dom';
 
-import Card from './card'
-
+import NavBar from './navBar';
+import routes from '../routes';
+import NotFound from './not_found';
 
 class App extends Component {
 
-  componentDidMount() {
-    const { dispatch } = this.props
-    dispatch(fetchAppsIfNeeded())
-  }
-
-
   render() {
-    const { isFetching, apps } = this.props
-    let totalapps = apps.length;
-
     return (
-       <div>
-         {isFetching && apps.length === 0 && <h2>Loading...</h2>}
-         {!isFetching && apps.length === 0 && <h2>Empty.</h2>}
-         <Card apps={apps} totalapps={totalapps} />
+       <div id="app-container">
+			 	 <NavBar />
+				 <div id="main-content" className="wrap-inner">
+				    <Switch>
+						  {
+								routes.map(({ path, exact, component: Component, ...rest}) => (
+									<Route key={path} path={path} exact={exact} render={
+										(props) => (
+											<Component {...props} {...rest} />
+										)
+									} />
+								))
+							}
+							<Route render={(props) => (
+								<NotFound {...props} />
+							)} />
+						</Switch>
+				 </div>
        </div>
     );
   }
 }
  
-function mapStateToProps(state) {
-  const { isFetching, apps } = state
- 
-  return {
-    isFetching,
-    apps
-  }
-}
- 
-export default connect(mapStateToProps)(App)
+export default App;

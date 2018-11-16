@@ -21,7 +21,7 @@ function template(title, initialState = {}, content = ""){
               </head>
               <body>
                 <div class="content">
-                   <div id="app" class="wrap-inner">
+                   <div id="app">
                       <!--- magic happens here -->  ${content}
                    </div>
                 </div>

@@ -2,9 +2,11 @@ import express from 'express'
 import cors from "cors"
 //import React from "react"
 //import { renderToString } from "react-dom/server"
-//import { StaticRouter, matchPath } from "react-router-dom"
+import { StaticRouter, matchPath } from "react-router-dom"
 //import serialize from "serialize-javascript"
 //import App from '../shared/components/app'
+
+import routes from '../shared/routes';
 
 //SSR function import
 const ssr = require('./ssr');
@@ -22,14 +24,16 @@ let initialState = {
 const app = express()
 
 app.use(cors())
-console.debug(`static path: ${path.resolve(__dirname, '../../assets')}`);
+//console.debug(`static path: ${path.resolve(__dirname, '../../assets')}`);
 app.use('/assets', express.static(path.resolve(__dirname, '../../assets')));
 app.use('/media', express.static(path.resolve(__dirname, '../../media')));
 //app.use(express.static('public'));
 
-app.get('/', (req, res) => {
+app.get('*', (req, res) => {
 	console.log(`req.path: ${req.path}`);
-  const { preloadedState, content}  = ssr(initialState)
+	const activeRoute = routes.find((route) => matchPath(req.url, route)) || {};
+
+  const { preloadedState, content}  = ssr(initialState, req);
   const response = template("Server Rendered Page", preloadedState, content)
   res.setHeader('Cache-Control', 'assets, max-age=604800')
   res.send(response);

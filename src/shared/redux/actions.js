@@ -3,12 +3,14 @@ export const REQUEST_APPS = 'REQUEST_APPS'
 export const RECEIVE_APPS = 'RECEIVE_APPS'
 
 
+// action constructor methods
 function requestApps() {
   return {
     type: REQUEST_APPS
   }
 }
 
+// action constructor methods
 function receiveApps(json) {
   return {
     type: RECEIVE_APPS,
