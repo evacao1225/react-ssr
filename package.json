@@ -9,9 +9,9 @@
   },
   "scripts": {
     "start": "npm run build && node ./views/server/index.js",
-		"pack": "webpack --config webpack.config.js",
-		"babel": "babel src -d views",
-		"build": "npm run pack && npm run babel"
+    "pack": "webpack --config webpack.config.js",
+    "babel": "babel src -d views",
+    "build": "npm run pack && npm run babel"
   },
   "author": "Ping Cao",
   "license": "MIT",
@@ -22,8 +22,12 @@
     ]
   },
   "dependencies": {
-    "express": "^4.16.3",
+    "@fortawesome/fontawesome-svg-core": "^1.2.8",
+    "@fortawesome/free-solid-svg-icons": "^5.5.0",
+    "@fortawesome/react-fontawesome": "^0.1.3",
     "cors": "2.8.5",
+    "express": "^4.16.3",
+    "isomorphic-fetch": "^2.2.1",
     "react": "^16.5.2",
     "react-dom": "^16.5.2",
     "react-redux": "^5.0.7",

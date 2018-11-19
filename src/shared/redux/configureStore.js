@@ -1,14 +1,19 @@
-import { createStore, applyMiddleware } from 'redux'
+import { createStore, applyMiddleware, combineReducers } from 'redux'
 import thunkMiddleware from 'redux-thunk'
-import rootReducer from './reducers'
+import ReposReducer from './repo_reducer';
+import MoviesReducer from './movie_reducer';
 
 
 export default function configureStore(preloadedState) {
-  return createStore(
+	let rootReducer = combineReducers({
+		"apps": MoviesReducer,
+		"repos": ReposReducer
+	});
+	return createStore(
     rootReducer,
     preloadedState,
     applyMiddleware(
       thunkMiddleware
     )
-  )
+  );
 }

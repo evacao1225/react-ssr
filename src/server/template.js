@@ -20,10 +20,8 @@ function template(title, initialState = {}, content = ""){
                 <link href="assets/style.css" rel="stylesheet">
               </head>
               <body>
-                <div class="content">
-                   <div id="app">
-                      <!--- magic happens here -->  ${content}
-                   </div>
+                <div id="app">
+                   <!--- magic happens here -->  ${content}
                 </div>
 
                   ${scripts}

@@ -72,7 +72,7 @@ body {
   font-family: "San Fransisco", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Helvatica Neue", Helvatica, sans-serif;
   font-size: 1rem;
   line-height: 1.65;
-  color: #333; }
+}
 
 h1, h2, h3, h4, h5, h6 {
   line-height: 1.145;
@@ -156,9 +156,9 @@ a:active, a:hover {
   max-width: 980px;
   margin: 0 auto; }
 
-.content {
+/*.content {
   padding-top: 48px;
-  padding-bottom: 48px; }
+  padding-bottom: 48px; }*/
 
 .row {
   display: -ms-flexbox;
@@ -287,7 +287,7 @@ a.btn:hover {
 .button, .icon-inline, caption, td, th {
   vertical-align: middle; }
 
-.content {
+#app {
   background: whitesmoke; }
 
 .app-card .btn {
@@ -295,6 +295,16 @@ a.btn:hover {
   border-radius: 50px;
   height: 2rem;
   line-height: 2.1rem; }
+
+.proj-item .btn {
+	padding: 0 20px;
+	border-radius: 50px;
+	height: 2rem;
+	line-height: 2.1rem; }
+
+.proj-nowrap {
+	white-space: nowrap;
+}
 
 @keyframes goingup {
   0% {
@@ -347,7 +357,7 @@ a.btn:hover {
   background-repeat: repeat-y;
   animation: goingup 1s cubic-bezier(0.29, 0.99, 1, 1); }
 
-.section-intro, .app-card {
+.section-intro, .app-card, .error-card, .proj-item {
   margin-bottom: 60px;
   padding: 36px;
   background: #fff; }
@@ -355,9 +365,13 @@ a.btn:hover {
 .section-intro {
   box-shadow: 5px 25px 30px -25px rgba(42, 48, 93, 0.21); }
 
-.app-card {
+.app-card, .error-card, .proj-item {
   display: flex;
   box-shadow: 0 20px 20px rgba(0, 0, 0, 0.08); }
+
+.error-card {
+	border-left: 2px solid #F42;
+}
 
 .app-no {
   color: #F42;
@@ -433,13 +447,40 @@ a.btn:hover {
 
 #app-container {
 	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
+}
+
+#main {
+	display: flex;
+	flex: 1;
+}
+
+header {
+	width: 100%;
+	height: 70px;
+	text-align: center;
+	color: #fff;
+	background-color: #4f4f4f;
+}
+
+.error {
+	color: red;
+}
+
+footer {
+	width: 100%;
+	height: 40px;
+	text-align: center;
+	color: #fff;
+	background-color: #4f4f4f;
 }
 
 #left-nav-bar {
 	order: -1;
 	padding: 5px 25px;
-	margin: 0 auto;
 	border-right: 1px solid #ddd;
+	background-color: #ddd;
 }
 
 #left-nav-bar > a {
@@ -454,7 +495,12 @@ a.btn:hover {
 	color: #fff;
 }
 
-
 #main-content {
 	flex-grow: 1;
+	padding: 20px 0;
+}
+
+.col-right {
+	flex-grow: 1;
+
 }

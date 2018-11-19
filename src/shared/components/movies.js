@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 
-import { fetchAppsIfNeeded } from '../redux/actions'
+import { fetchAppsIfNeeded } from '../redux/movie_actions'
 import Card from './card';
 
 class Movies extends Component {
@@ -12,7 +12,7 @@ class Movies extends Component {
   }
 
 	render() {
-		const { isFetching, apps } = this.props
+		const { isFetching, data: apps } = this.props
     let totalapps = apps.length;
 
 		return (
@@ -26,12 +26,9 @@ class Movies extends Component {
 }
 
 function mapStateToProps(state) {
-  const { isFetching, apps } = state
+  const { apps } = state
  
-  return {
-    isFetching,
-    apps
-  }
+  return apps;
 }
 
 export default connect(mapStateToProps)(Movies);

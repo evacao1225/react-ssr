@@ -17,9 +17,15 @@ const path = require('path');
 //import routes from '../shared/routes'
 
 let initialState = {
-  isFetching: false,
-  apps: data
-}
+	apps: {
+		isFetching: false,
+	  data: data
+	},
+  repos: {
+		isFetching: false,
+	  data: []
+	}
+};
 
 const app = express()
 
