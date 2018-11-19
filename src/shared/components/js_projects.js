@@ -16,12 +16,12 @@ class JSProjects extends Component {
 		console.log(`js props: ${JSON.stringify(this.props)}`);
 		const { isFetching, data: repos, error } = this.props;
 		let totalRepos = repos.items ? repos.items.length : 0;
-		console.log(`totalRepos: ${totalRepos}`);
+		//console.log(`totalRepos: ${totalRepos}`);
 		return (
 			<Fragment>
 				{isFetching && repos.length === 0 && <h2>Loading...</h2>}
 				{!isFetching && repos.length === 0 && !error && <h2>Empty!</h2>}
-				{!isFetching && error && <Error message={error} />}
+				{!isFetching && error && <Error error={error} />}
 				<Item data={repos.items ? repos.items : []} total={totalRepos} />
 			</Fragment>
 		);

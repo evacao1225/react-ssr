@@ -1,3 +1,4 @@
+// ismorphic-fetch is implementation of fetch for both node.js and browser
 import fetch from 'isomorphic-fetch';
 
 export const REQUEST_REPOS = 'REQUEST_REPOS';
